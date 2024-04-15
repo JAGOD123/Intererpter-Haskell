@@ -1,0 +1,62 @@
+(C if x > 0 then x:= x+1 else x := x-1, [(x, 3)])
+(C if x > 0 then x:= x+1 else x := x-1, [(x, -3)])
+
+
+(C if  x*y < z+100 then output := 10 else output := 0, [(x,10), (y, 100), (z, 20)]) 
+
+(C if  x*y < z+100 then output := 10 else output := 0, [(x,1), (y, 1), (z, 20)]) 
+
+
+(C if true then x:= 1 else x:= 2; if false then y:= 3 else y:= 4, [])
+
+(C  y:= 0; if   x >= 2   then y:=1  else y:=2 ;  y:=3, [ (x, 3)]) 
+
+(C  y:= 0; if   x >= 2   then y:=1  else y:=2 ;  y:=3, [ (x, 1)]) 
+
+
+(C  y:= 0; if   x >= 2   then y:=1  else (y:=2 ;  y:=3), [ (x, 3)]) 
+
+(C  y:= 0; if   x >= 2   then y:=1  else (y:=2 ;  y:=3), [ (x, 1)]) 
+
+
+(C  if x>0 then sign:= 1 else sign := -1, [(x, -3)])
+
+(C  if x>0 then sign:= 1 else sign := -1, [(x,  3)])
+
+
+(C if x>y then max := x else max := y, [ (x, 10), (y, 3)])
+
+(C if x>y then max := x else max := y, [ (x, 10), (y, 30)])
+
+
+(C if x>y then (max:= x; min := y )  else (min:= x; max := y), [ (x,1), (y, 5)])
+
+(C if x>y then (max:= x; min := y )  else (min:= x; max := y), [ (x,10), (y, 3)])
+
+
+
+(C if x >= y then max := x else max := y; if max >= z then max:= max else max:= z, [ (x,100), (y, 5), (z,30)])
+
+(C if x >= y then max := x else max := y; if max >= z then max:= max else max:= z, [ (x,10), (y, 50), (z,30)])
+
+(C if x >= y then max := x else max := y; if max >= z then max:= max else max:= z, [ (x,10), (y, 50), (z,300)])
+
+
+(C if x >= y then  (if y >= z then u:= 1  else  u:= 2 ) else  u:= 3  , [ (x,100), (y, 5), (z,30)])
+
+(C if x >= y then  if y >= z then  u:= 1  else  u:= 2  else  u:= 3 , [ (x,100), (y, 5), (z,30)])
+
+
+(C if n <0 then (error := 1; cost:= 0) else (error := 0; if   n <= 800 then cost := 6*n +800 else cost := 5 *n +500), [(n, -30)])
+
+(C if n <0 then (error := 1; cost:= 0) else (error := 0; if   n <= 800 then cost := 6*n +800 else cost := 5 *n +500), [(n, 800)])
+
+(C if n <0 then (error := 1; cost:= 0) else (error := 0; if   n <= 800 then cost := 6*n +800 else cost := 5 *n +500), [(n, 900)])
+
+
+
+(C   if todayMonth >=  birthMonth then age := todayYear - birthYear else age := todayYear -birthYear -1, [(todayYear, 2024), (todayMonth, 2), (birthYear, 2000), (birthMonth, 1) ])
+
+(C   if todayMonth >=  birthMonth then age := todayYear - birthYear else age := todayYear -birthYear -1, [(todayYear, 2024), (todayMonth, 2), (birthYear, 2000), (birthMonth, 5) ])
+
+

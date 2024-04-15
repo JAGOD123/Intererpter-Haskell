@@ -1,0 +1,36 @@
+(E 5+7,[])
+
+(E  8*2 + (4*3), [])
+
+(E (4+n)+6,[(n,-1)])
+
+(E (3+y)+7-9*x , [(x,10),(y,100)])
+
+(E  4*3+7*y, [(y, 1)])
+
+
+(C   x:= 1,  [])
+
+(C  x:=1 ; y:=2 ; z:=3, [])
+
+(C (x:=1; x:= x+1), [])
+
+(C  x:= 1; y:= x+1; z:= 3* (x+y), [])
+
+(C  x:= (y + z)* n, [(y,1), (z,10), (n, 2)])
+
+(C  x:= 1; y:= 2; z:= (x+y), [])
+
+
+(C cubevolume :=  side * side*side  ,  [(side , 2)])
+
+(C cubearea :=  6* side * side,  [(side, 2)])
+
+(C cuboidarea := 2 *a *b + 2 * a*c + 2 *b *c, [(a, 2), (b,1), (c, 3)])
+
+(C cuboidvolume :=  a*b*c, [(a, 2), (b,1), (c, 3)])
+
+(C   age := thisYear - birthYear, [(thisYear, 2024), (birthYear, 2000)])
+
+
+

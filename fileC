@@ -1,0 +1,37 @@
+(C (x:= 1; while  x < 1 do x:= 1 + x ) , [])
+
+
+(C fac:=1 ; while n>=2 do (fac := fac*n ; n:=n-1)  , [(n,4)]) 
+
+(C fac:=1 ; while n>=2 do (fac := fac*n ; n:=n-1)  , [(n,-1)]) 
+
+
+
+(C  i:= 0;  sum := 0; while i <= n do  (sum := sum + i; i:= i+1),  [(n,5)])
+
+(C  i:= 0;  sum := 0; while i <= n do  (sum := sum + i; i:= i+1),  [(n,10)])
+
+
+(C if n<= 0  then sign:=-1 else sign  := 1;  fac:= 1  ; while n>= 2 do (fac:= fac*n; n:= n-1 ), [ (n,4)])
+
+(C if n<= 0  then sign:=-1 else sign  := 1;  fac:= 1  ; while n>= 2 do (fac:= fac*n; n:= n-1 ), [ (n,-4)])
+
+(C if true then a:=4 else (while false do a:=4), [])
+
+(C if true then a:=4 else while false do a:=4, [])
+
+(C (while false do (if true then x:= 1 else x:= 2)), [])
+
+(C while false do  if true then x:= 1 else x:= 2, [])
+
+(C if 0<1  then x:=4 else (x:=5 ; (while true do y:=7 ; z:=9)), [] )
+
+(C  x:= 0; y:= 0; z:= 0; while (x+y) <= 1 do x:=x+1 ; y := y+1 ; z:=z+1, [] )
+
+(C  x:= 0; y:= 0; z:= 1; while  x <= n do (x:= x+1 ; y:=y +x; z:= z*2), [(n, 4)] )
+
+(C x:=5; while x>0 do (x:= x-1;x:=x-2) , [])
+
+(C x:=5; while x>0 do x:= x-1;x:=x-2, [])
+
+
