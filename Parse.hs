@@ -76,9 +76,9 @@ alt ph1 ph2 toks =
 next :: Parse a -> Parse b -> Parse (a,b)
 next ph1 ph2 toks = 
   case ph1 toks of
-    Success (res1, rest1) -> 
+    Success (r1, rest1) -> 
       case ph2 rest1 of 
-        Success (res2, rest2) -> Success ((res1, res2), rest2)
+        Success (r2, rest2) -> Success ((r1, r2), rest2)
         FailAs _ -> FailAs "next: ph2 fails"
     FailAs err -> FailAs "Next: ph1 fails"
                 
@@ -87,15 +87,15 @@ next ph1 ph2 toks =
 
 many :: Parse a -> Parse [a] 
 many ph  = (ph `next` many ph `build` cons) `alt` (\toks -> Success ([], toks))
-             where
-             cons (x,xs) = x:xs
+  where
+  cons (x,xs) = x:xs
 
 
 -- Semantic action. The results from a parser ph are transformed by applying a function f.
 build :: Parse a -> (a -> b) -> Parse b 
 build ph f toks = 
   case ph toks of
-    FailAs _ -> FailAs "Parser for build fails"  
+    FailAs _ -> FailAs "Parser for build fails h1"  
     Success (r,toks') -> Success (f r, toks')
 
 -- reader returns a function which maps an IMPfile to a Haskell term of type a (eg BoolExp, Com, etc).
