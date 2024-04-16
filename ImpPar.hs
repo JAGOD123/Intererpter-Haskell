@@ -57,11 +57,10 @@ readcom  = reader com
 --}
 readiexp :: IMPFile -> IntExp 
 readiexp = reader iexp
-{--
+
 readbexp :: IMPFile -> BoolExp 
 readbexp = reader bexp
 
---}
 
 ---------------------
 -- Build Functions --
@@ -104,14 +103,11 @@ makePMT (a, la) = let mPM e1 (op,e2) =
                       in foldl mPM a la
 
 
---- COMPLETE makeBool
-
-
 makeBool (ie1,(op,ie2)) =
   case op of
     "<"   -> BopExp (Le, ie1, ie2)
     ">"   -> BopExp (Gr, ie1, ie2)
-    "<=" -> BopExp (LeEq, ie1, ie2)
+    "<="  -> BopExp (LeEq, ie1, ie2)
     ">=" -> BopExp (GrEq, ie1, ie2)
 
 makeComFromAtom  ("(",(c,")")) = c
@@ -197,25 +193,25 @@ catom toks =
   ) toks
   
 
-       
+--}     
 -- COMPLETE the parser for IMP Boolean expressions
 bexp :: Parse BoolExp
 bexp toks = 
-  ( ??? 
-   `build` makeBool
-   `alt` batom
+  ( iexp `next` (key "<=" `alt` key ">=" `alt` key "<" `alt` key ">") `next` iexp 
+    `build` makeBool
+    `alt` batom
   ) toks
 
 batom :: Parse BoolExp
 batom toks = 
   (key"true"  `build` (Bool . str_to_b)
    `alt`
-   ???
+   key"false" `build` (Bool . str_to_b)
    `alt`
    key"(" `next` bexp `next` key")"  `build` makeExpFromAtom
   )  toks
   
---}
+
 -- parser for IMP integer expressions
 
 iexp :: Parse IntExp
