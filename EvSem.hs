@@ -3,6 +3,8 @@
 -- SML EVALUATION SEMANTICS FOR IMP                                   
 -- Roy Crole and Paula Severi 2024                                            
 --------------------------------------------------------------------- 
+{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
+{-# HLINT ignore "Redundant bracket" #-}
 
 module EvSem
 
@@ -24,9 +26,9 @@ evalint (IopExp (op, e1, e2)) s =
     let p1 = evalint e1 s
         p2 = evalint e2 s
     in case op of
-        Plus  -> p1 + p2
-        Minus -> p1 - p2
-        Times -> p1 * p2
+        Plus  -> (p1 + p2)
+        Minus -> (p1 - p2)
+        Times -> (p1 * p2)
  
  ---------------------------------------------------------------------
 -- Code the function evalbool for evaluating Boolean Expressions

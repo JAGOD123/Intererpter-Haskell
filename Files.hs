@@ -27,35 +27,28 @@ arrow = " ==> "
 
  
 ---  COMPLETE processLine            
-{--
+
 processLine :: String -> String
 processLine x = if x == "" then x
-                else case ???  of 
-                       Success ((C c,s), [])  -> x ++  arrow ++ ???
-                       Success ((E e,s), [])  -> x ++  arrow ++ ???
-                       other ->  "\n Error in your input file.\n" 
+                else case prog (tokenize x) of 
+                       Success ((C c,s), [])  -> x ++  arrow ++ show (evalcom c s) 
+                       Success ((E e,s), [])  -> x ++  arrow ++ show (evalint e s)
+                       other -> "\n Error in your input file.\n" 
                      
 
-
 processLines:: [String] -> [String]
-processLines =  ??? 
+processLines =  map processLine
    
 ---  COMPLETE processAll
       
 processAll :: String -> String
-processAll  ???
+processAll input = unlines $ processLines (lines input)
+
+
 
 processFile :: FilePath -> IO()
 processFile x =  do  existsFile <-  doesFileExist x 
                      if existsFile then 
-                        do filestr <- ???
-                           putStrLn (??? )  
+                        do filestr <- readFile x
+                           putStrLn (processAll filestr)  
                      else putStrLn "The file does not exist" 
-
-
-
-
---}
-
-
-

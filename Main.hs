@@ -3,6 +3,8 @@
 -- MAIN FILE: HASKELL USERS' FUNCTIONS FOR IMP                                 
 -- Roy L. Crole and Paula Severi 2024                                              
 ---------------------------------------------------------------------
+{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
+{-# HLINT ignore "Redundant bracket" #-}
 
 module Main where
 
@@ -22,30 +24,31 @@ import Files
 
 ppev :: Prog -> String
 ppev p = case p of
-             (C c,s) ->  arrow ++ ???
-             (E e,s) ->  arrow ++ ???
+             (C c,s) ->  arrow ++ show (evalcom c s) 
+             (E e,s) ->  arrow ++ show (evalint e s)
              
 
 -- COMPLETE prompt
+
 
 prompt :: IO()
 prompt = do putStr "\n >IMP> \n"
             inputstr <- getLine
             if inputstr=="" then prompt else
-             case  (???  inputstr) of
-              Success (Run  s, [])    -> do 
-                                          ???
-                                         
-              Success (??? , [])    -> do 
-                                            putStr  (ppev p) 
-                                            ???
-              Success (Helpp, [])     -> do 
-                                           help 0
-                                           prompt
-              Success (Help k, [])    ->  do 
-                                           ???
-                                           prompt
-              Success (Quit, [])      -> ???
+             case  ins  (tokenize inputstr) of
+              Success (Run  s, []) -> do 
+                processFile s
+                prompt                      
+              Success (Eval p, []) -> do 
+                putStr  (ppev p) 
+                prompt
+              Success (Helpp, [])  -> do 
+                help 0
+                prompt
+              Success (Help k, []) ->  do 
+                help k
+                prompt
+              Success (Quit, [])   -> putStrLn "Exit\n\n"
               -- other deals with the case of Failing parsers
               other   -> putStrLn "Error in your input.\n" >> prompt
 
@@ -56,4 +59,3 @@ prompt = do putStr "\n >IMP> \n"
 main :: IO()
 main = do introduction
           prompt 
-          

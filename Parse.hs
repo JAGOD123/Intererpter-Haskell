@@ -106,6 +106,6 @@ reader :: Parse a -> IMPFile -> a
 reader ph impf
   = case ph (tokenize impf) of
       Success (result,[]) -> result
-      other -> error "parse unsuccessful" 
+      other -> error "parse unsuccessful  " 
   
 
