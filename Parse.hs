@@ -56,10 +56,7 @@ num :: Parse IMPword
 num (Num n : toks) = Success (n, toks)
 num _ = FailAs "Parsing Failed"
 
-
-
-
- -------------------------
+-------------------------
 -- Parsing combinators --
 -------------------------
 

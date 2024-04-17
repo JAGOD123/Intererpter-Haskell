@@ -97,21 +97,21 @@ symbolic (str, []) = (str, [])
 scanning :: (Tokens, IMPFile) -> Tokens 
 scanning (toks, []) = toks
 scanning (toks, c:cs) = 
-      if is_letter c then
-        let (al, cs2) = alpha([c],cs) in 
-        if al `mem` keywords then
-          scanning (toks++[Key al],cs2) -- checks the keywords and adds it
-        else 
-          scanning (toks++[Id al],cs2) -- var names
-      
-      else if is_digit c then
-        let (num, cs2) = numeric ([c], cs) in 
-        scanning (toks ++ [Num num], cs2) -- nums
-      else if is_special c then
-        let (sy, cs2) = symbolic ([c], cs) in 
-        scanning (toks ++ [Key sy], cs2) -- symbols 
-      else
-        scanning (toks,cs)
+  if is_letter c then
+    let (al, cs2) = alpha([c],cs) in 
+    if al `mem` keywords then
+      scanning (toks++[Key al],cs2) -- checks the keywords and adds it
+    else 
+      scanning (toks++[Id al],cs2) -- var names
+  
+  else if is_digit c then
+    let (num, cs2) = numeric ([c], cs) in 
+    scanning (toks ++ [Num num], cs2) -- nums
+  else if is_special c then
+    let (sy, cs2) = symbolic ([c], cs) in 
+    scanning (toks ++ [Key sy], cs2) -- symbols 
+  else
+    scanning (toks,cs)
             
 
 tokenize :: IMPFile -> Tokens 

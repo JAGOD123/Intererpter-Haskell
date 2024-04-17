@@ -76,9 +76,9 @@ help 2 = (putStr . unlines) [
   
   "\n <boolexp> ::=   true | false |  <intexp> <= <intexp> | <intexp> >= <intexp> | <intexp> < <intexp> | <intexp> > <intexp>",
   
-  "\n  <intexp> := <int> | <v> | <intexp> + <intexp> | <intexp> - <intexp> | <intexp> * <intexp> ",
+  "\n <intexp> := <int> | <v> | <intexp> + <intexp> | <intexp> - <intexp> | <intexp> * <intexp> ",
 
-  "\n where v is an alphabetic string  and int is an integer "]
+  "\n where v is an alphabetic string and int is an integer "]
 
 
 help 3 = (putStr . unlines) [

@@ -14,14 +14,14 @@ mem x (y:ys) | x == y = True
 
 lookUp :: Eq a => [(a,b)] -> a -> b
 lookUp [] _ = error "Empty State"
-lookUp ((k, v):rs) x | k == x = v
+lookUp ((key, val):rs) x | key == x = val
                      | otherwise = lookUp rs x 
 
 
 update :: Eq a => [(a, b)] -> a -> b -> [(a, b)]
-update [] k v = [(k, v)]
-update ((k', v'):xs) k v 
-    | k' == k   = (k, v): xs 
-    | otherwise = (k', v') : update xs k v 
+update [] key val = [(key, val)]
+update ((key', val'):xs) key val 
+    | key' == key   = (key, val): xs 
+    | otherwise = (key', val') : update xs key val 
        
 
